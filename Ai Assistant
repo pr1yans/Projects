@@ -18,27 +18,27 @@ def speak(text):
     tts.save("temp.mp3")
     
 
-# Initialize Pygame
-pygame.init()
-
-# Initialize the mixer
-pygame.mixer.init()
-
-# Load the MP3 file
-pygame.mixer.music.load('temp.mp3')
-
-# Play the MP3 file
-pygame.mixer.music.play()
-
-# Wait for the music to finish
-while pygame.mixer.music.get_busy():
-    pygame.time.Clock().tick(10)
-
-pygame.mixer.music.unload()    
-os.remove("temp.mp3")
-
-# Quit Pygame
-pygame.quit()
+    # Initialize Pygame
+    pygame.init()
+    
+    # Initialize the mixer
+    pygame.mixer.init()
+    
+    # Load the MP3 file
+    pygame.mixer.music.load('temp.mp3')
+    
+    # Play the MP3 file
+    pygame.mixer.music.play()
+    
+    # Wait for the music to finish
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
+    
+    pygame.mixer.music.unload()    
+    os.remove("temp.mp3")
+    
+    # Quit Pygame
+    pygame.quit()
 
 
     
@@ -54,8 +54,8 @@ def processCommand(c):
         link = musiclibrary.music[song]
         webbrowser.open(link)
     
-    elif "tiger" in c.lower():
-        r = requests.get("https://newsapi.org/v2/top-headlines?country=in&apikey={newsapi}")
+    elif "news" in c.lower():
+        r = requests.get(f"https://newsapi.org/v2/top-headlines?country=in&apikey={newsapi}")
         if r.status_code == 200:
             data = r.json()
             
@@ -81,8 +81,8 @@ if __name__ == "__main__":
               print("listening......")
               audio = r.listen(source, timeout=3, phrase_time_limit=2)
             word = r.recognize_google(audio) 
-            if(word.lower() == "monkey"):
-                speak("MONKEY AI ACTIVE")             
+            if(word.lower() == "mike"):
+                speak("Mike AI ACTIVE")             
                 with sr.Microphone() as source:
                     print("mike active")
                     audio = r.listen(source)
